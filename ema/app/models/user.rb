@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
-	attr_accessor :email, :password, :password_confirmation
+    has_many :invitations
+	has_many :events, through: :invitation
+	attr_accessor  :password, :password_confirmation
   
-  attr_accessor :password
+  
   before_save :encrypt_password
   
   validates :password, format:{with: /\A(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}\z/, message: " - Should contain 1 Uppercase, 1 Number, 1 Special Character and should be of minimum 8 Characters."} 

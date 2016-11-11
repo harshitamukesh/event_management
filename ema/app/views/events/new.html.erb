@@ -1,0 +1,38 @@
+<div class="container">
+<h1>Sign Up</h1>
+<%= form_for @event, :validate => true  do |f| %>
+  
+  
+  <p>
+    <%= f.label :Event %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :venu %><br />
+    <%= f.text_field :venu %>
+  </p>
+  <p>
+    <%= f.label :date %><br />
+    <%= f.text_field :date %>
+  </p>
+  <p>
+    <%= f.label :time %><br />
+    <%= f.text_field :time %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area:description %>
+  </p>
+  <p>
+    <%= f.label :Invited %><br />
+    <%= f.text_area :Invited %>
+  </p>
+   <p>
+    <%= f.label :Invitee %><br />
+    <%= f.text_area :Invitee %>
+  </p>
+  <p class="button"><%= submit_tag "ok" %>
+  <%= submit_tag "Cancel" %></p>
+
+</div>
+<% end %>
