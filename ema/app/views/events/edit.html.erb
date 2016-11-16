@@ -11,7 +11,15 @@
  <%= f.label :Enter_date%>       <%= f.text_field :date %></br></br>
  <%= f.label :Enter_time %>           <%= f.text_field :time %></br></br>
  <p><%= f.label :Enter_description%></br>    <%= f.text_area :description, size: "60x5" %></br></br></p>
- <%= f.label :Invited_by %> </br>    
+ <%= f.label :Invited_by %> 
+<ul>
+  <% @users.each do |role| %>
+    <li>
+      <%= check_box_tag 'invitee_ids[]', role.id -%>
+      <%= role.firstname -%>
+    </li>
+  <% end %>
+</ul></br>    
  <%= current_user.email%> </br>
   </br>
  <%= f.label :Select_invitee %> 
