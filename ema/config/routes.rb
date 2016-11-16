@@ -3,20 +3,39 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+#   root 'welcome#index'
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-post '/event' => "events#new", :as => "events"
+#   # Example of regular route:
+#   #   get 'products/:id' => 'catalog#view'
+# post '/event' => "events#new", :as => "events"
 get "/log_out" => "sessions#destroy", :as => "log_out"
 get "/log_in" => "sessions#new", :as => "log_in"
 get "/sign_up" => "users#new", :as => "sign_up"
+# get "/events" => "events#index", :as => "user"
+root 'welcome#index'
+
+ # get 'sign_up' => 'users#new', as: :sign_up
+
+
+
+ # get 'login' => 'sessions#new', as: :login_new
+
+ post 'log_in' => 'sessions#create', as: :session_create
+
+ get 'event/new/:user_id' => 'events#new',as: :event_new
+
+ post 'event/new/:user_id' => 'events#create',as: :event_create
+
+ get 'event/list/:user_id' => 'events#index',as: :event_list
+ 
+ get 'event/:id' => 'events#edit', as: :event_edit
+ put 'event/:id' => 'events#update', as: :event_update
 
 
 resources :users
-  resources :events
+#   resources :events
 
-resources :sessions, :except => [:new, :destroy]
+# resources :sessions, :except => [:new, :destroy]
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 

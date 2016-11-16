@@ -1,0 +1,44 @@
+<div class="container-fluid">
+
+
+<%if current_user.id == @event.owner_id %>
+
+<%= form_for :event, url:event_update_path(@event), method: :put do |f|%>
+
+
+<%= f.label :Enter_Event_name%>    <%= f.text_field :title %></br></br>
+ <%= f.label :Enter_Venue%>       <%= f.text_field :venu %></br></br>
+ <%= f.label :Enter_date%>       <%= f.text_field :date %></br></br>
+ <%= f.label :Enter_time %>           <%= f.text_field :time %></br></br>
+ <p><%= f.label :Enter_description%></br>    <%= f.text_area :description, size: "60x5" %></br></br></p>
+ <%= f.label :Invited_by %> </br>    
+ <%= current_user.email%> </br>
+  </br>
+ <%= f.label :Select_invitee %> 
+ <%= f.label :Enter_Status%>  
+ <%= f.select :status, ['open', 'closed']%></br></br></br>
+<%= f.submit :Submit,:class=>"btn" %>
+
+<%end%>
+
+
+<%else%>
+<%= form_for :event, url:event_update_path(@event), method: :put do |f|%>
+
+
+<%= f.label :Enter_Event_name%>    <%= f.text_field :title,:disabled=>true %></br></br>
+ <%= f.label :Enter_Venue%>       <%= f.text_field :venu,:disabled=>true  %></br></br>
+ <%= f.label :Enter_date%>       <%= f.text_field :date,:disabled=>true  %></br></br>
+ <%= f.label :Enter_time %>           <%= f.text_field :time,:disabled=>true  %></br></br>
+ <p><%= f.label :Enter_description%></br>    <%= f.text_area :description, size: "60x5" ,:disabled=>true %></br></br></p>
+ <%= f.label :Invited_by %> </br>    
+ <%= current_user.email%> </br>
+  </br>
+ <%= f.label :Select_invitee %> 
+ <%= f.label :Enter_Status%>  
+ <%= f.select :status, ['open', 'closed']%></br></br></br>
+<%= f.submit :Submit,:class=>"btn" %>
+
+<%end%>
+
+<%end%></div>

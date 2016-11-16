@@ -13,12 +13,23 @@
   <div class="navbar-header">
     <a class="navbar-brand" href="#"> <%= image_tag("logo2.png", :alt => "rss feed", :class => "logo") %></a>
   </div>
+   <ul class="nav navbar-nav navbar-right">
+      <div id="user_nav">
+ <% if current_user %>
+   Logged in as <%= current_user.firstname %>
+   <%= link_to "<button class=btn btn-primary>Log out</button>".html_safe,log_out_path%>
+ <% else %>
+   <%= link_to "<button class=btn btn-primary>Sign up</button>".html_safe,sign_up_path%>
+   <%= link_to "<button class=btn btn-primary>Log in</button>".html_safe,log_in_path%>
   
-  <ul class="nav navbar-nav navbar-right">
-
-    <%= link_to "Sign up now!", sign_up_path, class: "btn btn-lg btn-primary" %> 
-    <%= link_to "log in", log_in_path, class: "btn btn-lg btn-primary" %>
-  </ul>
+ <% end %>
+</div>
+<div class="color">
+<% flash.each do |name, msg| %>
+ <%= content_tag :div, msg, :id => "flash_#{name}" %>
+<% end %>
+</div>
+     </ul>
 </div>
 </nav>
 

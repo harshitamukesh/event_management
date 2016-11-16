@@ -1,38 +1,45 @@
 <div class="container">
-<h1>Sign Up</h1>
-<%= form_for @event, :validate => true  do |f| %>
-  
-  
+<h1>Create Event</h1>
+<%= form_for :event, url: event_create_path do |f| %>
+ 
   <p>
-    <%= f.label :Event %><br />
-    <%= f.text_field :title %>
-  </p>
+   <%= f.label :Event %><br />
+   <%= f.text_field :title %>
+ </p>
   <p>
-    <%= f.label :venu %><br />
-    <%= f.text_field :venu %>
-  </p>
+   <%= f.label :Venue %><br />
+   <%= f.text_field :venu %>
+ </p>
   <p>
-    <%= f.label :date %><br />
-    <%= f.text_field :date %>
-  </p>
-  <p>
-    <%= f.label :time %><br />
-    <%= f.text_field :time %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_area:description %>
-  </p>
-  <p>
-    <%= f.label :Invited %><br />
-    <%= f.text_area :Invited %>
-  </p>
-   <p>
-    <%= f.label :Invitee %><br />
-    <%= f.text_area :Invitee %>
-  </p>
-  <p class="button"><%= submit_tag "ok" %>
-  <%= submit_tag "Cancel" %></p>
+   <%= f.label :Date%><br />
+   <%= f.text_field :date %>
+ </p>
+ <p>
+   <%= f.label :Time %><br />
+   <%= f.text_field :time %>
+ </p>
 
-</div>
+<%= f.label :Invitees %>
+<ul>
+  <% @users.each do |role| %>
+    <li>
+      <%= check_box_tag 'invitee_ids[]', role.id -%>
+      <%= role.firstname -%>
+    </li>
+  <% end %>
+</ul>
+
+  <p>
+   <%= f.label :Description %><br />
+   <%= f.text_area :description %>
+ </p>
+  <p>
+   <%= f.label :Status %><br />
+   <%= f.select :status, ['open', 'closed']%></br></br></br>
+ </p>
+ 
+  
+ <p class="button"><%= f.submit :OK %>
+ <%= f.submit :Cancel %></p>
 <% end %>
+</div>
